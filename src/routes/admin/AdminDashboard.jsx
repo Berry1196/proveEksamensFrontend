@@ -4,24 +4,27 @@ import { Dialog, Transition } from "@headlessui/react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 export default function AdminHome() {
-  const [owner, setOwner] = useState({
+  const [trip, setTrip] = useState({
     name: "",
-    address: "",
-    phone: "",
+    date: "",
+    time: "",
+    location: "",
+    duration: "",
+    packing_list: "",
   });
-  const [owners, setOwners] = useState([]);
+  const [trips, setTrips] = useState([]);
   const [open, setOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
   const [selectedOwner, setSelectedOwner] = useState(null);
 
-  //Use effect to get all owners
+  //Use effect to get all trips
   useEffect(() => {
-    facade.getOwners().then((data) => setOwners(data));
+    facade.getTrips().then((data) => setTrips(data));
   }, []);
 
   function handleChange(e) {
-    setOwner({
-      ...owner,
+    setTrip({
+      ...trip,
       [e.target.name]: e.target.value,
     });
   }
@@ -85,13 +88,16 @@ export default function AdminHome() {
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
-                  {owners.map((ownerss) => (
-                    <tr key={ownerss.id}>
-                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{ownerss.name}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{ownerss.address}</td>
-                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{ownerss.phone}</td>
+                  {trips.map((trip) => (
+                    <tr key={trip.id}>
+                      <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">{trip.date}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{trip.duration}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{trip.location}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{trip.name}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{trip.packing_list}</td>
+                      <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{trip.time}</td>
                       <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                        <button onClick={() => handleEditClick(ownerss)}>Edit</button>
+                        <button onClick={() => handleEditClick(trip)}>Edit</button>
                       </td>
                     </tr>
                   ))}

@@ -4,13 +4,13 @@ import ApiFacade from "../../ApiFacade";
 export default function Home() {
   const [owner, setOwner] = useState([]);
 
-  useEffect(() => {
-    ApiFacade.getOwners().then((data) => setOwner(data));
-  }, []);
+  // useEffect(() => {
+  //   ApiFacade.getOwners().then((data) => setOwner(data));
+  // }, []);
 
   return (
     <Fragment>
-      <div className="px-4 sm:px-6 lg:px-8">
+      {/* <div className="px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
           <div className="sm:flex-auto">
             <h1 className="text-base font-semibold leading-6 text-gray-900">Users</h1>
@@ -66,7 +66,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </Fragment>
   );
 }

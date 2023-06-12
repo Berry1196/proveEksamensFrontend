@@ -289,6 +289,14 @@ async function deleteHarbour(harbour_id) {
 }
 
 
+async function getTrips() {
+  const options = makeOptions("GET", true);
+  const data = await fetch(WEB_URL + "trip", options);
+  const res = await data.json();
+  return res;
+}
+
+
 
 
 
@@ -418,6 +426,7 @@ async function deleteHarbour(harbour_id) {
     editBoat,
     editOwner,
     deleteHarbour,
+    getTrips,
   };
 }
 const facade = apiFacade();
